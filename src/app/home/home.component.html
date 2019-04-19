@@ -1,0 +1,62 @@
+<div class="logo" (mouseenter)="menuShow()">
+  <img src="../assets/logo.png">
+</div>
+<div class="menu" [ngClass]="{'hidden': has}">
+  <p id="hot_repo" (click)="getHotRepo()">HOT REPOSITORY</p>
+  <p id="prolific_users" (click)="getHotUser()">USERS</p>
+</div>
+
+<div class="window ml-2">
+  <div class="column">
+    <img  [src]=topUser.avatar_url class="text-center" />
+    <div class="top-user">
+      <h1>{{topUser.login}}</h1>
+      <h2><span class="user">{{topUser.followers}}</span> Followers</h2>
+    </div>
+    <h5 class="mt-6">Top Users</h5>
+    <table class="table table-hover ml-5">
+      <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Login</th>
+        <th scope="col">Followers</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let user of users.slice(0,5)">
+      <tr>
+        <td>{{user.id}}</td>
+        <td>{{user.login}}</td>
+        <td>{{user.followers}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="column">
+    <img  [src]=topRepo.owner.avatar_url class="text-center" />
+    <div class="top-repo">
+      <h1>{{this.topRepo.full_name}}</h1>
+      <h2><span class="repo">{{this.topRepo.stargazers_count}}</span> Stargazers</h2>
+    </div>
+    <h5 class="mt-6">Top Repos</h5>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Stargazers</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let repo of repos.slice(0,5); let i = index">
+      <tr>
+        <td>{{repo.id}}</td>
+        <td>{{repo.full_name}}</td>
+        <td>{{repo.stargazers_count}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<app-loader [loading]="loading"></app-loader>
+
