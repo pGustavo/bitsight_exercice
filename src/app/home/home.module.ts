@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import {UserService} from '@app/services/user.service';
+import {GitService} from '@app/services/git.service';
 import {HttpClientModule} from '@angular/common/http';
 import {LoaderComponent} from '@app/loader/loader.component';
 
@@ -14,7 +14,7 @@ import {LoaderComponent} from '@app/loader/loader.component';
     HttpClientModule,
   ],
   declarations: [HomeComponent, LoaderComponent],
-  providers: [UserService],
+  providers: [GitService],
   entryComponents: [LoaderComponent]
 })
 export class HomeModule { }

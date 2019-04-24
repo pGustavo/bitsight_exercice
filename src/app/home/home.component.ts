@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '@app/services/user.service';
+import {GitService} from '@app/services/git.service';
 import {User} from '@app/models/users.model';
 import {Repository} from '@app/models/repository.model';
 
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   has = true;
   loading: boolean;
 
-  constructor(private userService: UserService) {
+  constructor(private gitService: GitService) {
   }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   getFollowers(link: string, user: User) {
     console.log(this.loading);
 
-    this.userService.getJson(link).subscribe((followers: any) => {
+    this.gitService.getJson(link).subscribe((followers: any) => {
         this.loading = true;
         user.followers = followers.length;
       }, error => {
@@ -51,9 +51,7 @@ export class HomeComponent implements OnInit {
   }
 
   getHotRepo() {
-    console.log(this.loading);
-
-    this.userService.getAllRepositoriesByStars('popular', 'stars').subscribe((repos: any) => {
+    this.gitService.getAllRepositoriesByStars('popular', 'stars').subscribe((repos: any) => {
         this.loading = true;
         repos.items.forEach(repo => {
           this.repos.push({
@@ -67,25 +65,17 @@ export class HomeComponent implements OnInit {
           });
         });
       }, error => {
-        console.log(this.loading);
-
         this.loading = false;
         console.log(error);
       },
       () => {
-        console.log(this.loading);
-
         this.topRepo = this.repos[0];
         this.loading = false;
-        console.log(this.loading);
-
       });
   }
 
   getHotUser() {
-    console.log(this.loading);
-
-    this.userService.getAllUsersByFollowers('popular', 'followers').subscribe((users: any) => {
+    this.gitService.getAllUsersByFollowers('popular', 'followers').subscribe((users: any) => {
         this.loading = true;
         users.items.forEach(user => {
           this.users.push({
@@ -119,8 +109,6 @@ export class HomeComponent implements OnInit {
   }
 
   menuShow() {
-    console.log(this.loading);
-
     this.has = !this.has;
   }
 }

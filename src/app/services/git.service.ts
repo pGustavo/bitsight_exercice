@@ -5,7 +5,7 @@ import {User} from '@app/models/users.model';
 import {Repository} from '@app/models/repository.model';
 
 @Injectable()
-export class UserService {
+export class GitService {
 
   constructor(private _http: HttpClient) {
     console.log('User Service Started...');

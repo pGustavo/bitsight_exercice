@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from '@app/home/home.component';
-import {UserService} from '@app/services/user.service';
+import {GitService} from '@app/services/git.service';
 
 const routes: Routes = [{
   path: '',
@@ -14,7 +14,7 @@ const routes: Routes = [{
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [UserService]
+  providers: [GitService]
 })
 export class HomeRoutingModule {
 }
